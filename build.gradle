@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+dependencies {
+    implementation 'com.github.h31:libslparser-core:1.1-SNAPSHOT'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation "org.gradle:gradle-tooling-api:6.8.3"
+    // The tooling API need an SLF4J implementation available at runtime, replace this with any other implementation
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.10'
+
+    // kill process with all grand-children:
+    // https://bugs.java.com/bugdatabase/view_bug.do?bug_id=4770092
+    // https://stackoverflow.com/questions/801609/java-processbuilder-process-destroy-not-killing-child-processes-in-winxp
+    implementation group: 'org.jvnet.winp', name: 'winp', version: '1.28'
+}
